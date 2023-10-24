@@ -1,10 +1,11 @@
 import { getTrackInfo } from "@/lib/spotify.client"
+import { Track } from "@/types/spotify"
 import { signIn, useSession } from "next-auth/react"
 import { Suspense, useState } from "react"
 
 export default function Home() {
   const { data: session, status } = useSession()
-  const [selectedTrack, setSelectedTrack] = useState<string | null>(null)
+  const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
 
   const handleGetAllTrackClick = async () => {
     if (!session?.accessToken) return
